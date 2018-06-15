@@ -1,15 +1,35 @@
+
 html {
   position: relative;
   min-height: 100%; }
-
-  
-#login_wrapper{
+  #login_wrapper{
+    -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  left: 0;
+  position: relative;
+  background-color: #f5f5fa; 
   margin-top:100px;
-}
-
-#logo-font{
-  font-size:30px;
-}
+  }
+  
+  #logo-font{
+    font-size:30px;
+  }
+  #login_left{
+    border-right: 1px solid #35465c;
+  }
+  #manage_sidebar li > span{
+    padding: 18px 30px;
+  }
+  @media screen and (max-width: 767px) {
+    #login_left{
+      border-right: 0px;
+      border-bottom: 1px solid #35465c;;
+    }
+  }
 body {
   background-color: #F3F5F8;
   font-family: "Source Sans Pro", sans-serif;
@@ -164,14 +184,15 @@ html.fullscreen-bg #wrapper {
     background-color: #f8f8f8; }
   .navbar-default .brand {
     float: left;
-    padding: 20px;
+    padding: 30px 49px;
     background-color: #fff; }
   @media screen and (max-width: 1024px) {
     .navbar-default .brand {
+      padding-left: 30px;
       padding-right: 15px; } }
   @media screen and (max-width: 992px) {
     .navbar-default .brand {
-      display: none; } }
+      /*display: none;*/ } }
   @media screen and (max-width: 640px) {
     .navbar-default #navbar-menu {
       float: right; } }
