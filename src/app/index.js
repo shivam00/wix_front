@@ -7,10 +7,14 @@ var AskTitle = require('./ask_title');
 var AskAbout = require('./ask_about');
 var ManageWebsite = require('./manage_webiste');
 var Header = require('./header');
+var HeaderManage = require('./header_manage');
+var ManageScreen = require('./manage_screen');
+var ManageSidebarEditPageSection = require('./manage_sidebar_eidt_page_section');
+var ManageSidebarHome = require('./manage_sidebar_home');
 
 
 import {Route, BrowserRouter as Router, browserHistory, Link } from 'react-router-dom';
-
+//this.props.match.params.id
 var App = createReactClass({
     render:function(){
         return(
@@ -20,6 +24,8 @@ var App = createReactClass({
                 <Route exact path={'/q1'} component={AskTitle}/>
                 <Route exact path={'/q2'} component={AskAbout}/>
                 <Route exact path={'/manage'} component={SuperManageWebsite}/>
+                <Route exact path={'/manage/edit_section/:page_id'} component={SuperManageWebsite_EditSection}/>
+                
 
                 </div>
             </Router>
@@ -27,12 +33,28 @@ var App = createReactClass({
     }
 });
 
+
+
 var SuperManageWebsite = createReactClass({
     render:function(){
         return(
             <div>
-            <Header/>
-            <ManageWebsite/>
+            <HeaderManage/>
+            <ManageSidebarHome/>
+            <ManageScreen/>
+            </div>
+        );
+
+    }
+});
+
+var SuperManageWebsite_EditSection = createReactClass({
+    render:function(){
+        return(
+            <div>
+            <HeaderManage/>
+            <ManageSidebarEditPageSection/>
+            <ManageScreen/>
             </div>
         );
 
