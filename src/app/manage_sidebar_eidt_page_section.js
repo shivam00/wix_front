@@ -7,6 +7,7 @@ import Iframe from 'react-simple-iframe'
 var ManageSidebarEditPageSection = createReactClass({
     render:function(){
       return(
+          <div>
         <div id="sidebar-nav" className="sidebar">
         <div className="sidebar-scroll" id="manage_sidebar">
           <nav>
@@ -24,10 +25,9 @@ var ManageSidebarEditPageSection = createReactClass({
                         <li><a href="javascript:void">Section Name :</a><input type="text" className="form-control" placeholder="Section Name"/></li>
                         <li><a href="javascript:void">Tagline :</a> <input type="text" className="form-control" placeholder="Tagline"/></li>
                         <li><a href="javascript:void">Content 1</a></li>
-                        <li> <a href="#subPages4" data-toggle="collapse" className="collapsed"><i className="fa fa-plus" /> <span>Add More Thread</span></a></li>
-                        {/* <li><a href="javascript:void">Icon :</a> <input type="text" className="form-control" placeholder="Icon"/></li>
-                        <li><a href="javascript:void">Heading : </a><input type="text" className="form-control" placeholder="Heading"/></li>
-                        <li><a href="javascript:void">Content :</a> <textarea className="form-control" placeholder="textarea" rows={4} defaultValue={""} /></li> */}
+  
+                        <li> <a href="#subPages4" data-toggle="modal" data-target="#myModal1" className="collapsed"><i className="fa fa-plus" /> <span>Add More Thread</span></a></li>
+                        
                     </ul>
                     </div>
                 </li>
@@ -38,7 +38,7 @@ var ManageSidebarEditPageSection = createReactClass({
                         <li><a href="javascript:void">Section Name :</a><input type="text" className="form-control" placeholder="Section Name"/></li>
                         <li><a href="javascript:void">Tagline :</a> <input type="text" className="form-control" placeholder="Tagline"/></li>
                         <li><a href="javascript:void">Content 1</a></li>
-                        <li> <a href="#subPages4" data-toggle="collapse" className="collapsed"><i className="fa fa-plus" /> <span>Add More Thread</span></a></li>
+                        <li> <a href="#subPages4" data-toggle="modal" data-target="#myModal2" className="collapsed"><i className="fa fa-plus" /> <span>Add More Thread</span></a></li>
                         {/* <li><a href="javascript:void">Image :</a> <input type="file" className="form-control"/></li>
                         <li><a href="javascript:void">Heading : </a><input type="text" className="form-control" placeholder="Heading"/></li>
                         <li><a href="javascript:void">Content :</a> <textarea className="form-control" placeholder="textarea" rows={4} defaultValue={""} /></li> */}
@@ -54,7 +54,7 @@ var ManageSidebarEditPageSection = createReactClass({
                         <li><a href="javascript:void">Tagline :</a> <input type="text" className="form-control" placeholder="Tagline"/></li>
                         <li>
                         <a href="#subPages4" data-toggle="collapse" className="collapsed"><i className="lnr lnr-file-empty" /> <span>Thread 1</span></a>
-                        <a href="#subPages4" data-toggle="collapse" className="collapsed"><i className="fa fa-plus" /> <span>Add More Thread</span></a>
+                        <a href="#subPages4" data-toggle="modal" data-target="#myModal3" className="collapsed"><i className="fa fa-plus" /> <span>Add More Thread</span></a>
                         </li>
                     </ul>
                     </div>
@@ -66,7 +66,7 @@ var ManageSidebarEditPageSection = createReactClass({
                         <li><a href="javascript:void">Section Name :</a><input type="text" className="form-control" placeholder="Section Name"/></li>
                         <li><a href="javascript:void">Tagline :</a> <input type="text" className="form-control" placeholder="Tagline"/></li>
                         <li><a href="javascript:void">Content 1</a></li>
-                       <li> <a href="#subPages4" data-toggle="collapse" className="collapsed"><i className="fa fa-plus" /> <span>Add More</span></a></li>
+                       <li> <a href="#subPages4" data-toggle="modal" data-target="#myModal4" className="collapsed"><i className="fa fa-plus" /> <span>Add More</span></a></li>
                     
                     </ul>
                     </div>
@@ -75,6 +75,106 @@ var ManageSidebarEditPageSection = createReactClass({
           </nav>
         </div>
       </div>
+
+    //   Modal goes here 
+
+      <div className="modal fade" id="myModal1" role="dialog">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <button type="button" className="close" data-dismiss="modal">×</button>
+            <h4 className="modal-title">Add More thread</h4>
+          </div>
+          <div className="modal-body">
+          <ul style={{listStyle: 'none', paddingLeft: 0}}>
+             <li><a href="javascript:void">Icon :</a> <input type="text" className="form-control" placeholder="Icon"/></li>
+            <li><a href="javascript:void">Heading : </a><input type="text" className="form-control" placeholder="Heading"/></li>
+            <li><a href="javascript:void">Content :</a> <textarea className="form-control" placeholder="textarea" rows={4} defaultValue={""} /></li>
+        </ul>
+          </div>
+
+          <div className="modal-footer">
+          <button type="button" class="btn btn-success">Proceed</button>
+            <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+      <div className="modal fade" id="myModal2" role="dialog">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <button type="button" className="close" data-dismiss="modal">×</button>
+            <h4 className="modal-title">Add More thread</h4>
+          </div>
+          <div className="modal-body">
+          <ul style={{listStyle: 'none', paddingLeft: 0}}>
+          <li><a href="javascript:void">Image :</a> <input type="file" className="form-control"/></li>
+            <li><a href="javascript:void">Heading : </a><input type="text" className="form-control" placeholder="Heading"/></li>
+            <li><a href="javascript:void">Content :</a> <textarea className="form-control" placeholder="textarea" rows={4} defaultValue={""} /></li>
+        </ul>
+          </div>
+
+          <div className="modal-footer">
+          <button type="button" class="btn btn-success">Proceed</button>
+            <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+     <div className="modal fade" id="myModal3" role="dialog">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <button type="button" className="close" data-dismiss="modal">×</button>
+            <h4 className="modal-title">Add More thread</h4>
+          </div>
+          <div className="modal-body">
+          <ul style={{listStyle: 'none', paddingLeft: 0}}>
+          <li><a href="javascript:void">Image :</a> <input type="file" className="form-control"/></li>
+            <li><a href="javascript:void">Heading : </a><input type="text" className="form-control" placeholder="Heading"/></li>
+            <li><a href="javascript:void">Content :</a> <textarea className="form-control" placeholder="textarea" rows={4} defaultValue={""} /></li>
+        </ul>
+          </div>
+
+          <div className="modal-footer">
+          <button type="button" class="btn btn-success">Proceed</button>
+            <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+        <div className="modal fade" id="myModal4" role="dialog">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <button type="button" className="close" data-dismiss="modal">×</button>
+            <h4 className="modal-title">Add More thread</h4>
+          </div>
+          <div className="modal-body">
+          <ul style={{listStyle: 'none', paddingLeft: 0}}>
+          <li><a href="javascript:void">Image :</a> <input type="file" className="form-control"/></li>
+            <li><a href="javascript:void">Name : </a><input type="text" className="form-control" placeholder="Heading"/></li>
+            <li><a href="javascript:void">Designation :</a> <textarea className="form-control" placeholder="textarea" rows={4} defaultValue={""} /></li>
+        </ul>
+          </div>
+
+          <div className="modal-footer">
+          <button type="button" class="btn btn-success">Proceed</button>
+            <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
       );
     }
   });
