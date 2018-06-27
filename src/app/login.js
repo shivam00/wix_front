@@ -25,16 +25,19 @@ var Login = createReactClass({
                   <div className="col-md-2">
                   </div>
                     <div className="col-md-4"id="login_left">
-  
-                        <input className="form-control input-lg" placeholder="Email" type="text" />
+                        <form onSubmit={this.handleSubmit}>
+                        <input className="form-control input-lg" ref="email" placeholder="Email" type="text" />
                         <br/>
   
-                        <input className="form-control input-lg" placeholder="Password" type="Password" />
+                        <input className="form-control input-lg" ref="password" placeholder="Password" type="Password" />
                         <br/>
-                        <button type="button" className="btn btn-primary btn-block">Log In</button>
+                        <button type="submit" className="btn btn-primary btn-block">Log In</button>
+                        </form>
                     </div>
                     <div className="col-md-4">
                     Login With Social Media
+                    <br/>
+                    <a href="http://localhost:3000/auth/google"><img src="app/assets/img/login_google.png"/></a>
                     </div>
                     <div className="col-md-2">
                     </div>
@@ -46,7 +49,11 @@ var Login = createReactClass({
             </div>
   
       );
-    }
+    },
+    handleSubmit: function(e){
+     e.preventDefault();
+      this.props.loginRequest(this.refs.email.value, this.refs.password.value);
+  }
   });
 
   module.exports = Login;
