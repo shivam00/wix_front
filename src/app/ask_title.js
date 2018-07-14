@@ -21,9 +21,9 @@ var AskTitle = createReactClass({
                     </center>
                   <h2 className="name">Title</h2>
                 </div>
-                <form action="index.html">
+                <form onSubmit={this.handleSubmit}>
                   <div className="input-group">
-                    <input type="text" className="form-control" placeholder="Website name" />
+                    <input type="text" ref="title" className="form-control" placeholder="Website name" />
                     <span className="input-group-btn"><button type="submit" className="btn btn-primary"><i className="fa fa-arrow-right" /></button></span>
                   </div>
                 </form>
@@ -34,6 +34,10 @@ var AskTitle = createReactClass({
       
   
       );
+    },
+    handleSubmit:function(e){
+      e.preventDefault();
+      this.props.add_title(this.refs.title.value);
     }
   });
 

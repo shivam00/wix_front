@@ -20,9 +20,9 @@ var AskAbout = createReactClass({
                     <img src={require("./assets/img/ask_about.png")}/>
                     </center>
                 </div>
-                <form action="index.html">
+                <form onSubmit={this.handleSubmit}>
                   <div className="input-group">
-                  <textarea className="form-control" placeholder="About the webiste" rows={4} defaultValue={""} />
+                  <textarea className="form-control" ref="about" placeholder="About the webiste" rows={4} defaultValue={""} />
                     <span className="input-group-btn"><button type="submit" className="btn btn-primary"><i className="fa fa-arrow-right" /></button></span>
                   </div>
                 </form>
@@ -30,9 +30,11 @@ var AskAbout = createReactClass({
             </div>
           </div>
         </div>
-      
-  
       );
+    },
+    handleSubmit:function(e){
+      e.preventDefault();
+      this.props.add_about(this.refs.about.value);
     }
   });
 
