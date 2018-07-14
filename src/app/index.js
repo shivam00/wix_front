@@ -16,6 +16,8 @@ var MyWebistes = require('./mywebsites');
 //const BaseUrl = "http://localhost:1234";
 
 import {Route, BrowserRouter as Router, browserHistory, Link, Redirect } from 'react-router-dom';
+import Iframe from 'react-simple-iframe'
+import FormData from 'form-data'
 import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:3000/';
 axios.defaults.withCredentials =  true;
@@ -34,9 +36,7 @@ var App = createReactClass({
                 <Route exact path={'/mywebsites/q1'} component={C_AskTitle}/>
                 <Route exact path={'/mywebsites/q2'} component={C_AskAbout}/>
                 <Route exact path={'/manage'} component={SuperManageWebsite}/>
-                <Route exact path={'/manage/edit_section/:page_id'} component={SuperManageWebsite_EditSection}/>
-               
-                
+                <Route exact path={'/manage/edit_section'} component={SuperManageWebsite_EditSection}/>
 
                 </div>
             </Router>
@@ -130,32 +130,208 @@ class SuperMyWebistes extends React.Component {
 
     }
 };
+class SuperManageWebsite extends React.Component {
 
-var SuperManageWebsite = createReactClass({
-    render:function(){
+    constructor(props){
+        super(props);
+        
+        this.state = {
+            Myframe : <Iframe src='/app/user_themes/index.html' style={{border: 'none', width: '100%', height: '100%'}}/>
+
+ };
+ }
+    render(){
         return(
             <div>
             <HeaderManage/>
-            <ManageSidebarHome/>
-            <ManageScreen/>
+            <ManageSidebarHome update_details = {this.update_details}/>
+            <ManageScreen Myframe = {this.state.Myframe}/>
             </div>
         );
 
     }
-});
+    update_details(title, subtTitle, buttonText, ButtonLink){
 
-var SuperManageWebsite_EditSection = createReactClass({
-    render:function(){
+
+        axios.post('/auth/update_initials', {
+            title: title,
+            subTitle:subtTitle,
+            buttonText:buttonText,
+            buttonLink:ButtonLink
+
+          })
+          .then(function (response) {
+            console.log(response.data);
+            if(response.data == true){
+                //window.location = BaseUrl+"/mywebsites";
+                swal("Success", "Details Updated and saved", "success");
+            }else{
+                swal("Error", "Some Error Occured Please try Again", "error");
+            }
+          }.bind(this))
+          .catch(function (error) {
+            console.log(error);
+          });
+
+
+        //ManageScreen.forceUpdate();
+        this.setState = {
+            Myframe : <Iframe src='/app/user_themes/index.html' style={{border: 'none', width: '100%', height: '100%'}}/>
+        };
+    }
+};
+class SuperManageWebsite_EditSection extends React.Component {
+    constructor(props){
+        super(props);
+        
+        this.state = {
+            Myframe : <Iframe src='/app/user_themes/index.html' style={{border: 'none', width: '100%', height: '100%'}}/>
+
+ };
+
+}
+    render(){
         return(
             <div>
             <HeaderManage/>
-            <ManageSidebarEditPageSection/>
-            <ManageScreen/>
+            <ManageSidebarEditPageSection add_team={this.add_team} add_about2={this.add_about2} add_services={this.add_services} add_portfolio={this.add_portfolio}/>
+            <ManageScreen Myframe = {this.state.Myframe}/>
             </div>
         );
 
     }
-});
+    add_team(image, heading, content){
+        let data = new FormData();
+        data.append('file', image, image.fileName);
+        axios.post('/auth/upload', data, {
+            headers: {
+              'accept': 'application/json',
+              'Accept-Language': 'en-US,en;q=0.8',
+              'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+            }
+          })
+            .then((response) => {
+              //handle success
+              axios.post('/auth/add_team', {
+                heading: heading,
+                content:content
+              })
+              .then(function (response) {
+                console.log(response.data);
+                if(response.data == true){
+                    //window.location = BaseUrl+"/mywebsites";
+                    swal("Success", "Details Updated and saved", "success");
+                }else{
+                    swal("Error", "Invalid Credentials!", "error");
+                }
+              }.bind(this))
+              .catch(function (error) {
+                console.log(error);
+              });
+            }).catch((error) => {
+              //handle error
+              swal("Error", "Invalid Credentials!", "error");
+            });
+
+    }
+
+
+    add_about2(image, heading, content){
+        let data = new FormData();
+        data.append('file', image, image.fileName);
+        axios.post('/auth/upload', data, {
+            headers: {
+              'accept': 'application/json',
+              'Accept-Language': 'en-US,en;q=0.8',
+              'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+            }
+          })
+            .then((response) => {
+              //handle success
+              axios.post('/auth/add_about2', {
+                heading: heading,
+                content:content
+              })
+              .then(function (response) {
+                console.log(response.data);
+                if(response.data == true){
+                    //window.location = BaseUrl+"/mywebsites";
+                    swal("Success", "Details Updated and saved", "success");
+                }else{
+                    swal("Error", "Invalid Credentials!", "error");
+                }
+              }.bind(this))
+              .catch(function (error) {
+                console.log(error);
+              });
+            }).catch((error) => {
+              //handle error
+              swal("Error", "Invalid Credentials!", "error");
+            });
+
+    }
+
+    add_services(icon, heading, content){
+        console.log(heading);
+        axios.post('/auth/add_service', {
+            icon: icon,
+            heading: heading,
+            content:content
+          })
+          .then(function (response) {
+            console.log(response.data);
+            if(response.data == true){
+                //window.location = BaseUrl+"/mywebsites";
+                swal("Success", "Details Updated and saved", "success");
+            }else{
+                swal("Error", "Invalid Credentials!", "error");
+            }
+          }.bind(this))
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+
+    add_portfolio(image, heading, content){
+
+        let data = new FormData();
+        data.append('file', image, image.fileName);
+        axios.post('/auth/upload', data, {
+            headers: {
+              'accept': 'application/json',
+              'Accept-Language': 'en-US,en;q=0.8',
+              'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+            }
+          })
+            .then((response) => {
+              //handle success
+              axios.post('/auth/add_portfolio', {
+                heading: heading,
+                content:content
+              })
+              .then(function (response) {
+                console.log(response.data);
+                if(response.data == true){
+                    //window.location = BaseUrl+"/mywebsites";
+                    swal("Success", "Details Updated and saved", "success");
+                }else{
+                    swal("Error", "Invalid Credentials!", "error");
+                }
+              }.bind(this))
+              .catch(function (error) {
+                console.log(error);
+              });
+            }).catch((error) => {
+              //handle error
+              swal("Error", "Invalid Credentials!", "error");
+            });
+
+    
+    }
+
+
+
+};
 
 var Homepage = createReactClass({
 

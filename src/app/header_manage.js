@@ -16,8 +16,8 @@ var HeaderManage = createReactClass({
         </div>
         <div id="navbar-menu">
         <ul className="nav navbar-nav navbar-right">
-        <li className="dropdown"><Link to="/mywebsites/q1"><a href="javascript:void"><span>New Website</span> <i class="icon-submenu fa fa-plus"></i></a></Link> </li>
-        <li className="dropdown"> <a href="#"><span>Manage Websites</span></a></li>
+        {/* <li className="dropdown"><Link to="/mywebsites/q1"><a href="javascript:void"><span>New Website</span> <i class="icon-submenu fa fa-plus"></i></a></Link> </li> */}
+        <li className="dropdown"><Link to="/manage"> <a href="javascript:void"><span>Manage Websites</span></a></Link></li>
         <li className="dropdown">
           <a href="#" className="dropdown-toggle" data-toggle="dropdown"><span>Add</span> <i className="icon-submenu lnr lnr-chevron-down" /></a>
           <ul className="dropdown-menu">
@@ -26,11 +26,7 @@ var HeaderManage = createReactClass({
           </ul>
         </li>
         <li className="dropdown">
-          <a href="#" className="dropdown-toggle" data-toggle="dropdown"><span>Manage/Edit Sections</span> <i className="icon-submenu lnr lnr-chevron-down" /></a>
-          <ul className="dropdown-menu">
-            <li><a href="#">Page 1</a></li>
-            <li><a href="#">Page 2</a></li>
-          </ul>
+         <Link to="manage/edit_section"> <a href="javascript:void"><span>Manage/Edit Sections</span></a></Link>
         </li>
         <li className="dropdown"><Link to="/mywebsites/q1"><a href="javascript:void"><span>LogOut</span> <i class="icon-submenu fa fa-sign-out"></i></a></Link> </li>
       </ul>
